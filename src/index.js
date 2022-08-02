@@ -6,7 +6,7 @@ import createSagaMiddleware from "@redux-saga/core";
 import thunk from "redux-thunk";
 import { Provider } from "react-redux";
 
-import App from "./App";
+import App from "./components/App";
 import { watchAll } from './store/sagas'
 
 //reducers

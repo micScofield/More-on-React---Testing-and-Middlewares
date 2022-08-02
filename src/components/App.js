@@ -1,11 +1,11 @@
 import React from 'react'
 
-import Dashboard from './Dashboard'
+import CommentList from './CommentList'
 
 export default function App() {
   return (
     <div>
-      <Dashboard />
+      <CommentList />
     </div>
   )
 }
