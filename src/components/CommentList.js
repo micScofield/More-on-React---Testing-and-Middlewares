@@ -1,5 +1,5 @@
 import React from 'react'
-import CommentBox from './CommentBox'
+import CommentBox from 'components/CommentBox'
 
 function CommentList() {
   return (

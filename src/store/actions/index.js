@@ -1,1 +1,1 @@
-export { createUser, updateUser } from './user'
+export { commentBoxFormSubmit } from 'store/actions/commentBox'
