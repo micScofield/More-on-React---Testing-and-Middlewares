@@ -1,15 +1,19 @@
 const { default: CommentList } = require('components/CommentList');
 const { mount } = require('enzyme');
-import CommentBox from 'components/CommentBox';
+
 import Root from 'Root';
 
 describe('comment list', () => {
   let wrapped;
-  let commentBox;
 
   beforeEach(() => {
+    const initialState = {
+        savedComments: {
+            comments: [ 'comment1', 'comment2' ]
+        }
+    }
     wrapped = mount(
-      <Root>
+      <Root initialState={initialState}>
         <CommentList />
       </Root>
     );
@@ -17,34 +21,18 @@ describe('comment list', () => {
 
   afterEach(() => {
     wrapped.unmount();
-    commentBox.unmount();
   });
 
   it('shows one li element per comment', () => {
-    commentBox = mount(
-      <Root>
-        <CommentBox />
-      </Root>
-    );
+    expect(wrapped.find('li').length).toEqual(2);
+  });
 
-    commentBox
-      .find('textarea')
-      .simulate('change', { target: { value: 'test' } });
+  it('shows text for each comment inside li', () => {
+    const cheerioWrapper = wrapped.render().text() // returns all the text (not html) from inside the component
 
-    commentBox.find('textarea').update();
+    console.log(cheerioWrapper) // returns comment1comment2
 
-    commentBox.find('form').simulate('submit', { preventDefault: () => {} });
-
-    commentBox
-      .find('textarea')
-      .simulate('change', { target: { value: 'test2' } });
-
-    commentBox.find('textarea').update();
-
-    commentBox.find('form').simulate('submit', { preventDefault: () => {} });
-
-    // const totalComments = store.getState().savedComments.comments.length;
-    // expect(wrapped.find('ul').children('li')).toHaveTextContent('test');
-    // expect(wrapped.find('li').length).toEqual(totalComments);
+    expect(cheerioWrapper).toContain('comment1')
+    expect(cheerioWrapper).toContain('comment2')
   });
 });

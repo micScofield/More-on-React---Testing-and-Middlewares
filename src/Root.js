@@ -16,12 +16,12 @@ const rootReducer = combineReducers({
 
 const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(rootReducer, applyMiddleware(thunk, sagaMiddleware));
+const Root = ({ children, initialState = {} }) => {
+  const store = createStore(rootReducer, initialState, applyMiddleware(thunk, sagaMiddleware));
 
-sagaMiddleware.run(watchAll);
+  sagaMiddleware.run(watchAll);
 
-const Root = (props) => {
-  return <Provider store={store}>{props.children}</Provider>;
+  return <Provider store={store}>{children}</Provider>;
 };
 
 export default Root;
