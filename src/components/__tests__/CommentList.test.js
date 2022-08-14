@@ -1,35 +1,50 @@
 const { default: CommentList } = require('components/CommentList');
 const { mount } = require('enzyme');
-const { Provider } = require('react-redux');
-import { combineReducers, createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-
-import CommentBoxFormSubmitReducer from 'store/reducers/commentBox';
-
-const rootReducer = combineReducers({
-  savedComments: CommentBoxFormSubmitReducer,
-});
-
-const store = createStore(rootReducer, applyMiddleware(thunk))
+import CommentBox from 'components/CommentBox';
+import Root from 'Root';
 
 describe('comment list', () => {
   let wrapped;
+  let commentBox;
 
   beforeEach(() => {
     wrapped = mount(
-      <Provider store={store}>
+      <Root>
         <CommentList />
-      </Provider>
+      </Root>
     );
   });
 
   afterEach(() => {
     wrapped.unmount();
+    commentBox.unmount();
   });
 
   it('shows one li element per comment', () => {
-    const totalComments = store.getState().savedComments.comments.length
+    commentBox = mount(
+      <Root>
+        <CommentBox />
+      </Root>
+    );
 
-    expect(wrapped.find('ul').children('li')).toHaveLength(totalComments);
-  })
+    commentBox
+      .find('textarea')
+      .simulate('change', { target: { value: 'test' } });
+
+    commentBox.find('textarea').update();
+
+    commentBox.find('form').simulate('submit', { preventDefault: () => {} });
+
+    commentBox
+      .find('textarea')
+      .simulate('change', { target: { value: 'test2' } });
+
+    commentBox.find('textarea').update();
+
+    commentBox.find('form').simulate('submit', { preventDefault: () => {} });
+
+    // const totalComments = store.getState().savedComments.comments.length;
+    // expect(wrapped.find('ul').children('li')).toHaveTextContent('test');
+    // expect(wrapped.find('li').length).toEqual(totalComments);
+  });
 });
