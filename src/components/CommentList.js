@@ -1,10 +1,22 @@
-import React from 'react'
-import CommentBox from 'components/CommentBox'
+import React from 'react';
+import { connect } from 'react-redux';
 
-function CommentList() {
+function CommentList({ savedComments }) {
   return (
-    <CommentBox />
-  )
+      <ul>
+      { savedComments && savedComments.length !== 0 && savedComments.map(comment => {
+        return <li key={comment}>
+          {comment}
+        </li>
+      })}
+      </ul>
+  );
 }
 
-export default CommentList
+const mapStateToProps = (state) => {
+  return {
+    savedComments: state.savedComments.comments,
+  };
+};
+
+export default connect(mapStateToProps, { })(CommentList);

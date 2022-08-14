@@ -15,7 +15,7 @@ import CommentBoxFormSubmitReducer from 'store/reducers/commentBox'
 // const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose
 
 const rootReducer = combineReducers({
-  savedComment: CommentBoxFormSubmitReducer
+  savedComments: CommentBoxFormSubmitReducer
 })
 
 const sagaMiddleware = createSagaMiddleware()

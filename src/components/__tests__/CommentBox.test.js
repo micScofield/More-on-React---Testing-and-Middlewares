@@ -7,7 +7,7 @@ import thunk from 'redux-thunk';
 import CommentBoxFormSubmitReducer from 'store/reducers/commentBox';
 
 const rootReducer = combineReducers({
-  savedComment: CommentBoxFormSubmitReducer,
+  savedComments: CommentBoxFormSubmitReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk))

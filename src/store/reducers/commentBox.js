@@ -1,13 +1,13 @@
 import * as types from 'store/actions/types'
 
 const initialState = {
-    comment: ''
+    comments: []
 }
 
 const commentBoxFormSubmitReducer = (state, action) => {
     return {
         ...state,
-        comment: action.payload,
+        comments: [...state.comments, action.payload],
     }
 }
 

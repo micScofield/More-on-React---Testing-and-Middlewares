@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { commentBoxFormSubmit } from 'store/actions';
 
-function CommentBox({ commentBoxFormSubmit, savedComment }) {
+function CommentBox({ commentBoxFormSubmit }) {
   const [comment, setComment] = useState('');
 
   const handleChange = (e) => {
@@ -21,17 +21,12 @@ function CommentBox({ commentBoxFormSubmit, savedComment }) {
 
   return (
     <form onSubmit={(e) => handleSubmit(e)} className='comment-box'>
-      <textarea value={comment} onChange={(e) => handleChange(e)} />
+      <textarea value={comment} onChange={(e) => handleChange(e)} /><br />
       <button action='submit'>Submit Comment</button>
-      <p>Saved Comment: {savedComment && savedComment}</p>
     </form>
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    savedComment: state.savedComment.comment,
-  };
-};
+const mapStateToProps = state => { return {} }
 
 export default connect(mapStateToProps, { commentBoxFormSubmit })(CommentBox);
