@@ -15,7 +15,7 @@ function CommentList({ savedComments }) {
 
 const mapStateToProps = (state) => {
   return {
-    savedComments: state.savedComments.comments,
+    savedComments: state.comments.comments,
   };
 };
 

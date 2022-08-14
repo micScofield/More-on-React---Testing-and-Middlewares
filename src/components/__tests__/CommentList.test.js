@@ -8,7 +8,7 @@ describe('comment list', () => {
 
   beforeEach(() => {
     const initialState = {
-        savedComments: {
+        comments: {
             comments: [ 'comment1', 'comment2' ]
         }
     }
@@ -30,7 +30,7 @@ describe('comment list', () => {
   it('shows text for each comment inside li', () => {
     const cheerioWrapper = wrapped.render().text() // returns all the text (not html) from inside the component
 
-    console.log(cheerioWrapper) // returns comment1comment2
+    //console.log(cheerioWrapper) // returns comment1comment2
 
     expect(cheerioWrapper).toContain('comment1')
     expect(cheerioWrapper).toContain('comment2')
