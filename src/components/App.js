@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 import CommentList from 'components/CommentList';
 import CommentBox from 'components/CommentBox';
 import FetchComments from 'components/FetchComments';
 import { toggleAuth } from 'store/actions';
-import { connect } from 'react-redux';
 
 const App = ({ toggleAuth, isAuthenticated }) => {
   const authHandler = () => {
