@@ -8,6 +8,7 @@ import { watchAll } from 'store/sagas';
 //reducers
 import CommentBoxFormSubmitReducer from 'store/reducers/commentBox';
 import AuthReducer from 'store/reducers/auth'
+// import async from 'components/middlewares/async';
 
 // const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose
 
