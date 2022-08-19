@@ -8,6 +8,8 @@ import { watchAll } from 'store/sagas';
 //reducers
 import CommentBoxFormSubmitReducer from 'store/reducers/commentBox';
 import AuthReducer from 'store/reducers/auth'
+import ReduxStateValidator from 'components/middlewares/reduxStateValidator';
+
 // import async from 'components/middlewares/async';
 
 // const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose
@@ -20,7 +22,7 @@ const rootReducer = combineReducers({
 const sagaMiddleware = createSagaMiddleware();
 
 const Root = ({ children, initialState = {} }) => {
-  const store = createStore(rootReducer, initialState, applyMiddleware(thunk, sagaMiddleware));
+  const store = createStore(rootReducer, initialState, applyMiddleware(thunk, sagaMiddleware, ReduxStateValidator));
 
   sagaMiddleware.run(watchAll);
 
