@@ -8,7 +8,7 @@ import { watchAll } from 'store/sagas';
 //reducers
 import CommentBoxFormSubmitReducer from 'store/reducers/commentBox';
 import AuthReducer from 'store/reducers/auth'
-import ReduxStateValidator from 'components/middlewares/reduxStateValidator';
+import reduxStateValidator from 'components/middlewares/reduxStateValidator';
 
 // import async from 'components/middlewares/async';
 
@@ -22,7 +22,7 @@ const rootReducer = combineReducers({
 const sagaMiddleware = createSagaMiddleware();
 
 const Root = ({ children, initialState = {} }) => {
-  const store = createStore(rootReducer, initialState, applyMiddleware(thunk, sagaMiddleware, ReduxStateValidator));
+  const store = createStore(rootReducer, initialState, applyMiddleware(thunk, sagaMiddleware, reduxStateValidator));
 
   sagaMiddleware.run(watchAll);
 

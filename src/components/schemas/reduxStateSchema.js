@@ -1,4 +1,4 @@
-export default {
+let reduxStateSchema = {
     "$schema": "https://json-schema.org/draft-07/schema",
     "$id": "http://example.com/example.json",
     "title": "Root Schema",
@@ -104,3 +104,5 @@ export default {
         }
     }]
 }
+
+export default reduxStateSchema
